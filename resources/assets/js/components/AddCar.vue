@@ -105,7 +105,7 @@
         methods: {
             addCar() {
                 this.axios
-                    .post('http://localhost:8000/api/car/add', this.car)
+                    .post('http://localhost:8000/api/cars/add', this.car)
                     .then(response => (
                         this.$router.push({name: 'home'})
                         // console.log(response.data)

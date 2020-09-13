@@ -48606,12 +48606,14 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         deleteCar: function deleteCar(id) {
             var _this3 = this;
 
-            this.axios.delete('http://localhost:8000/api/car/delete/' + id).then(function (response) {
-                var i = _this3.cars.map(function (item) {
-                    return item.id;
-                }).indexOf(id);
-                _this3.cars.splice(i, 1);
-            });
+            if (window.confirm("Do you really want to delete this car entry?")) {
+                this.axios.delete('http://localhost:8000/api/cars/' + id + '/delete').then(function (response) {
+                    var i = _this3.cars.map(function (item) {
+                        return item.id;
+                    }).indexOf(id);
+                    _this3.cars.splice(i, 1);
+                });
+            }
         },
         getOptionsBy: function getOptionsBy(option) {
             var _this4 = this;
@@ -48634,12 +48636,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
                 options.push(car[option]);
                 return options;
             }, []))));
-        },
-        showAllOptions: function showAllOptions(filter) {
-            var addedFilters = Object.values(this.filters).reduce(function (f) {
-                return Array.isArray(f) ? f.length : f;
-            });
-            return !addedFilters.length && this.filters[filter].length || !this.hasFilters;
         }
     }
 });
@@ -49547,7 +49543,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         addCar: function addCar() {
             var _this2 = this;
 
-            this.axios.post('http://localhost:8000/api/car/add', this.car).then(function (response) {
+            this.axios.post('http://localhost:8000/api/cars/add', this.car).then(function (response) {
                 return _this2.$router.push({ name: 'home' })
                 // console.log(response.data)
                 ;

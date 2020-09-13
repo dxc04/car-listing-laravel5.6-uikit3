@@ -73,7 +73,6 @@ class CarController extends Controller
      */
     public function delete(Car $car)
     {
-        $car = Car::find($id);
         $car->delete();
 
         return response()->json('The car successfully deleted');

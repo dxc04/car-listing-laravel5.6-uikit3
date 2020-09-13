@@ -189,12 +189,15 @@
                 return new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP' }).format(price)
             },
             deleteCar(id) {
-                this.axios
-                    .delete(`http://localhost:8000/api/car/delete/${id}`)
-                    .then(response => {
-                        let i = this.cars.map(item => item.id).indexOf(id);
-                        this.cars.splice(i, 1)
-                    });
+                if (window.confirm("Do you really want to delete this car entry?")) { 
+                    this.axios
+                        .delete(`http://localhost:8000/api/cars/${id}/delete`)
+                        .then(response => {
+                            let i = this.cars.map(item => item.id).indexOf(id);
+                            this.cars.splice(i, 1)
+                        });
+                }
+
             },
             getOptionsBy(option, filter = null) {
                 if (filter && this.filters[filter].length) {
@@ -211,12 +214,6 @@
                     options.push(car[option]);
                     return options;
                 }, []))];
-            },
-            showAllOptions(filter)  {
-                const addedFilters = Object.values(this.filters).reduce(f => {
-                    return  Array.isArray(f) ? f.length : f
-                })
-                return (!addedFilters.length && this.filters[filter].length) || !this.hasFilters;
             }
         }
     }
