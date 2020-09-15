@@ -1,5 +1,8 @@
 <?php
-$DATABASE_URL=parse_url(env(‘DATABASE_URL’)); //for heroku deployment
+$DATABASE_URL = array_fill_keys(['host', 'port', 'path', 'user', 'pass'], null);
+if (env('APP_ENV') === 'production') {
+    $DATABASE_URL = parse_url(env('DATABASE_URL')); //for heroku deployment
+}
 
 return [
 
