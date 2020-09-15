@@ -1,5 +1,5 @@
 <?php
-$DATABASE_URL=parse_url(‘DATABASE_URL’); //for heroku deployment
+$DATABASE_URL=parse_url(env(‘DATABASE_URL’)); //for heroku deployment
 
 return [
 
