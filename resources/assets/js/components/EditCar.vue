@@ -96,14 +96,14 @@
         },
         created() {
             this.axios
-                .get(`http://localhost:8000/api/cars/${this.$route.params.id}/edit`)
+                .get(`${BASE_URL}/api/cars/${this.$route.params.id}/edit`)
                 .then((response) => {
                     this.car = response.data;
                     // console.log(response.data);
                 });
 
             this.options = this.axios
-                .get('http://localhost:8000/api/carOptions')
+                .get('${BASE_URL}/api/carOptions')
                 .then(response => {
                     this.options = response.data;
                 });
@@ -111,7 +111,7 @@
         methods: {
             updateCar() {
                 this.axios
-                    .post(`http://localhost:8000/api/cars/${this.$route.params.id}/update`, this.car)
+                    .post(`${BASE_URL}/api/cars/${this.$route.params.id}/update`, this.car)
                     .then((response) => {
                         this.$router.push({name: 'home'});
                     });

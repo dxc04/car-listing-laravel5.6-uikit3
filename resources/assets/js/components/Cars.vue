@@ -174,12 +174,12 @@
         },
         created() {
             this.axios
-                .get('http://localhost:8000/api/cars')
+                .get(`${BASE_URL}/api/cars`)
                 .then(response => {
                     this.cars = response.data;
                 });
             this.options = this.axios
-                .get('http://localhost:8000/api/carOptions')
+                .get(`${BASE_URL}/api/carOptions`)
                 .then(response => {
                     this.options = response.data;
                 });
@@ -191,7 +191,7 @@
             deleteCar(id) {
                 if (window.confirm("Do you really want to delete this car entry?")) { 
                     this.axios
-                        .delete(`http://localhost:8000/api/cars/${id}/delete`)
+                        .delete(`${BASE_URL}/api/cars/${id}/delete`)
                         .then(response => {
                             let i = this.cars.map(item => item.id).indexOf(id);
                             this.cars.splice(i, 1)

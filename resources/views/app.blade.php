@@ -14,6 +14,9 @@
                 </div>
             </section>
         </div>
+        <script>
+             var BASE_URL = `{{ url('') }}`;
+        </script>
         <script src="{{ mix('js/app.js') }}" type="text/javascript"></script>
     </body>
 </html>

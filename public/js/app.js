@@ -48591,10 +48591,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     created: function created() {
         var _this2 = this;
 
-        this.axios.get('http://localhost:8000/api/cars').then(function (response) {
+        this.axios.get(BASE_URL + '/api/cars').then(function (response) {
             _this2.cars = response.data;
         });
-        this.options = this.axios.get('http://localhost:8000/api/carOptions').then(function (response) {
+        this.options = this.axios.get(BASE_URL + '/api/carOptions').then(function (response) {
             _this2.options = response.data;
         });
     },
@@ -48607,7 +48607,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             var _this3 = this;
 
             if (window.confirm("Do you really want to delete this car entry?")) {
-                this.axios.delete('http://localhost:8000/api/cars/' + id + '/delete').then(function (response) {
+                this.axios.delete(BASE_URL + '/api/cars/' + id + '/delete').then(function (response) {
                     var i = _this3.cars.map(function (item) {
                         return item.id;
                     }).indexOf(id);
@@ -49520,7 +49520,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         var _this = this;
 
-        this.options = this.axios.get('http://localhost:8000/api/carOptions').then(function (response) {
+        this.options = this.axios.get(BASE_URL + '/api/carOptions').then(function (response) {
             _this.options = response.data;
         });
     },
@@ -49543,7 +49543,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         addCar: function addCar() {
             var _this2 = this;
 
-            this.axios.post('http://localhost:8000/api/cars/add', this.car).then(function (response) {
+            this.axios.post(BASE_URL + '/api/cars/add', this.car).then(function (response) {
                 return _this2.$router.push({ name: 'home' })
                 // console.log(response.data)
                 ;
@@ -50099,12 +50099,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         var _this = this;
 
-        this.axios.get('http://localhost:8000/api/cars/' + this.$route.params.id + '/edit').then(function (response) {
+        this.axios.get(BASE_URL + '/api/cars/' + this.$route.params.id + '/edit').then(function (response) {
             _this.car = response.data;
             // console.log(response.data);
         });
 
-        this.options = this.axios.get('http://localhost:8000/api/carOptions').then(function (response) {
+        this.options = this.axios.get('${BASE_URL}/api/carOptions').then(function (response) {
             _this.options = response.data;
         });
     },
@@ -50113,7 +50113,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         updateCar: function updateCar() {
             var _this2 = this;
 
-            this.axios.post('http://localhost:8000/api/cars/' + this.$route.params.id + '/update', this.car).then(function (response) {
+            this.axios.post(BASE_URL + '/api/cars/' + this.$route.params.id + '/update', this.car).then(function (response) {
                 _this2.$router.push({ name: 'home' });
             });
         }

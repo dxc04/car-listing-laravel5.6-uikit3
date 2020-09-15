@@ -83,7 +83,7 @@
         },
         created() {
             this.options = this.axios
-                .get('http://localhost:8000/api/carOptions')
+                .get(`${BASE_URL}/api/carOptions`)
                 .then(response => {
                     this.options = response.data;
                 });
@@ -105,7 +105,7 @@
         methods: {
             addCar() {
                 this.axios
-                    .post('http://localhost:8000/api/cars/add', this.car)
+                    .post(`${BASE_URL}/api/cars/add`, this.car)
                     .then(response => (
                         this.$router.push({name: 'home'})
                         // console.log(response.data)
