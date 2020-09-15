@@ -1,4 +1,5 @@
 <?php
+$DATABASE_URL=parse_url(‘DATABASE_URL’); //for heroku deployment
 
 return [
 
@@ -61,6 +62,19 @@ return [
             'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'schema' => 'public',
+            'sslmode' => 'prefer',
+        ],
+
+        'hpgsql' => [
+            'driver' => 'pgsql',
+            'host' => $DATABASE_URL['host'],
+            'port' => $DATABASE_URL['port'],
+            'database' => ltrim($DATABASE_URL['path'], '/'),
+            'username' => $DATABASE_URL['user'],
+            'password' => $DATABASE_URL['pass'],
             'charset' => 'utf8',
             'prefix' => '',
             'schema' => 'public',
